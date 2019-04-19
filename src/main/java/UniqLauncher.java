@@ -38,5 +38,12 @@ public class UniqLauncher {
             parser.printUsage(System.err);
             return;
         }
+        try {
+            Uniq uniq = new Uniq(inputFile, outputFile, ignoreCase, numberFirstSym,
+            deletedNum, onlyUnique);
+            uniq.result();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

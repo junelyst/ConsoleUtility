@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/test/java/file1.txt" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/src/test/java/file1res.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/file1.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/file1res1.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/file1res1Expected.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/file1res2.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/file1res2Expected.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/file2.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/file2res1.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/file2res1Expected.txt" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

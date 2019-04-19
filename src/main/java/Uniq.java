@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Uniq {
 
-    private String inputFile;
+    private static String inputFile;
     private String outputFile;
     private Integer numberFirstSym;
     private boolean ignoreCase;
@@ -12,7 +12,7 @@ public class Uniq {
 
     public Uniq (String inputFile, String outputFile, boolean ignoreCase, Integer numberFirstSym,
                  boolean deletedNum, boolean onlyUnique) {
-        this.inputFile = inputFile;
+        Uniq.inputFile = inputFile;
         this.outputFile = outputFile;
         this.numberFirstSym = numberFirstSym;
         this.ignoreCase = ignoreCase;
@@ -20,29 +20,14 @@ public class Uniq {
         this.onlyUnique = onlyUnique;
     }
 
-    public static List<String> read (String inputFile) throws IOException {
+    public static List<String> read (InputStream input) throws IOException {
         String line;
         List<String> lines = new ArrayList<>();
-
-        if (inputFile != null) {
-            File in = new File(inputFile);
-            if (!in.exists()) throw new IOException("Input file does not exist");
-            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            while ((line = reader.readLine()) != null) {
-                lines.add(line);
-            }
-        }
-        else {
-            Scanner reader = new Scanner(System.in);
-            line = reader.nextLine();
-            while (reader.hasNextLine()) {
-                lines.add(line);
-                line = reader.nextLine();
-            }
+        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        while ((line = reader.readLine()) != null) {
             lines.add(line);
-            reader.close();
         }
-
+        if (lines.isEmpty()) throw new IOException("No input data");
         return lines;
     }
 
@@ -111,10 +96,19 @@ public class Uniq {
         else System.out.print(output);
     }
 
-    public void result () throws IOException {
+    public void result() throws IOException {
         String result;
         if (numberFirstSym < 0) throw new IOException("This parameter cannot be a negative number");
-        result = uniqueLines(read(inputFile));
+
+        List<String> inputList;
+        if (inputFile != null) {
+            File in = new File(inputFile);
+            if (!in.exists()) throw new IOException("Input file does not exist");
+            inputList = read(new FileInputStream(inputFile));
+        }
+        else inputList = read(System.in);
+
+        result = uniqueLines(inputList);
         write(outputFile, result);
     }
 }
