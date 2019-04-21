@@ -42,6 +42,7 @@ public class UniqTest {
 
     @Test
     public void fromFileToConsole() throws IOException {
+        PrintStream old = System.out;
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
@@ -54,17 +55,18 @@ public class UniqTest {
         writer.write(consoleOut);
         writer.close();
         assertTrue(fileComparison(consoleOutputExp, consoleOutput));
+        System.setOut(old);
     }
 
     @Test
     public void fromConsoleToFile() throws IOException {
-
+        InputStream old = System.in;
         System.setIn(new FileInputStream(file1));
         Uniq uniq = new Uniq(null, file1res1,
                 false, 0, false, false);
         uniq.result();
         assertTrue(fileComparison(file1res1Exp, file1res1));
-        System.setIn(System.in);
+        System.setIn(old);
     }
 
     @Test
